@@ -1,4 +1,14 @@
-o -e "
+#!/bin/bash
+
+# --------------------------------------------------------------------------------------------
+# Installs Ruby 2.6 using rbenv/ruby-build on the Raspberry Pi (Raspbian)
+#
+# Run from the web:
+#   bash <(curl -s https://gist.githubusercontent.com/blacktm/8302741/raw/install_ruby_rpi.sh)
+# --------------------------------------------------------------------------------------------
+
+# Welcome message
+echo -e "
 This will install Ruby 2.6 using rbenv/ruby-build.
 It will take about 2 hours to compile on the original Raspberry Pi,
 35 minutes on the second generation, and 16 minutes on the third.\n"
@@ -39,7 +49,7 @@ sudo apt update
 sudo apt install -y autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev
 
 # Install Ruby 2.6, don't generate RDoc to save lots of time
-CONFIGURE_OPTS="--disable-install-doc --enable-shared" rbenv install 2.6.4 --verbose
+CONFIGURE_OPTS="--disable-install-doc --enable-shared" rbenv install 2.6.3 --verbose
 
 # Set Ruby 2.6 as the global default
 rbenv global 2.6.3
