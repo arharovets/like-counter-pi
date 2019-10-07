@@ -1,5 +1,5 @@
 #!/bin/bash
 
 cd like-counter-pi
-bundle exec rails server
+/home/pi/.rbenv/bin/rbenv bundle exec rails server
 
