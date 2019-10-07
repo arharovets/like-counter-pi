@@ -53,7 +53,7 @@ Step four. It is time to install Ruby on Rails.
 
 ```bash
 gem install bundler
-gem install rails-v 5.2.3 --no-rdoc --no-ri
+gem install rails -v 5.2.3
 # Output:
 # =>...
 # => Successfully installed rails-5.2.0
@@ -71,7 +71,7 @@ Now when we have RoR installed...Step five.
 cd like-counter-pi
 bundle install
 rails s
-# Open the browser window and type localhost:3030.
+# Open the browser window and type localhost:3000.
 # If everything is okay, Press CTRL-C to stop the server.
 ```
 
