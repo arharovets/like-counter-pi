@@ -95,8 +95,8 @@ cd
 sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
 
 # Add the following lines:
-@lxterminal -e "bash -lc /home/pi/execute_counter.sh"
-@lxterminal -e "bash -lc /home/pi/open_browser.sh"
+@bash -lc /home/pi/execute_counter.sh
+@lxterminal -e "/home/pi/open_browser.sh"
 ```
 
 Let's check if everything works:
