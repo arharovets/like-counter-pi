@@ -86,17 +86,31 @@ sudo apt-get install xscreensaver
 Step six. Make sure you set the autologin feature.
 Go to Preferences > Raspberry Pi Configuration, click System tab and set Boot: To Desktop, then check Auto Login: Login as user 'username'.
 
-Step seven. We need to tell Raspberry what to run on the boot:
+Step seven. Now we need to tell our system to run rails server on boot, and we're going to do it with systemd.
 
 ```bash
-cd like-counter-pi
-chmod +x ./execute_counter.sh
-cd
+RAILS_ENV=production bundle exec rake assets:precompile
+sudo cp like-counter-pi.service /usr/lib/systemd/system
+systemctl enable like-counter-pi.service
+systemctl start like-counter-pi.service
+```
+
+Step eight. We need to tell Raspberry what to run on the boot:
+
+```bash
 sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
 
-# Add the following lines:
-@bash -lc /home/pi/execute_counter.sh
-@lxterminal -e "/home/pi/open_browser.sh"
+# Add the following line:
+/usr/bin/chromium --kiosk --ignore-certificate-errors --disable-restore-session-state "http://localhost:3000"
+```
+
+Step nine. We need to refresh the page every 1 minute.
+
+```bash
+sudo apt install xdotool
+crontab -e
+# add the following line:
+* * * * * DISPLAY=:0 xdotool key "shift+F5"
 ```
 
 Let's check if everything works:

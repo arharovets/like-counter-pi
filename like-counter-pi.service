@@ -1,0 +1,17 @@
+[Unit]
+Description=like-counter-pi server boot
+After=network.target
+After=local-fs.target
+
+[Service]
+Type=simple
+User=pi
+Group=pi
+WorkingDirectory=/home/pi/like-counter-pi
+ExecStart=/home/pi/.rbenv/bin/rbenv exec bundle exec rails server -e production
+TimeoutSec=180
+RestartSec=180s
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
