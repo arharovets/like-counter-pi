@@ -29,7 +29,7 @@ Let's clone this repo:
 Let's install Ruby:
 
     cd like-counter-pi
-    chmod +x install_ruby.sh
+    chmod +x install_ruby.sh # makes the script executable
     ./install_ruby.sh
 
 It might take some time (~2 hr on Pi Zero). Pour yourself a big cup of tea ☕️.
@@ -46,7 +46,6 @@ Close current Terminal window and open a new one. Type the following command:
 Yay! Check the installed version:
 
     ruby -v
-    => ruby 2.6.3somenumbersandletters
 
 Output:
 
@@ -58,31 +57,22 @@ Time to install Ruby on Rails:
 
     gem install bundler
     gem install rails -v 5.2.3
-    # Output:
-    # =>...
-    # => Successfully installed rails-5.2.0
-    # => 38 gems installed
-    
-    rbenv rehash
-    rails -v
-    # Output:
-    # => Rails 5.2.3
 
 Output:
 
     =>...
     => Successfully installed rails-5.2.0
     => 38 gems installed
-    
-    rbenv rehash
-    rails -v
-    # Output:
-    # => Rails 5.2.3
 
 Check Rails version:
 
-    rbenv rehash
     rails -v
+
+Don't forget to do:
+
+		rbenv rehash
+
+every time you install a new gem.
 
 Output:
 
@@ -127,7 +117,7 @@ We need to tell Raspberry what to run on the boot:
 
 Add the following line:
 
-    /usr/bin/chromium --kiosk --disable-restore-session-state http://localhost:3000
+    @chromium-browser --kiosk --disable-restore-session-state http://localhost:3000
 
 ### Step 9
 
@@ -135,12 +125,10 @@ We need to refresh the page every 1 minute. Do it via Cron task:
 
     sudo apt install xdotool
     crontab -e
-    # add the following line:
-    * * * * * DISPLAY=:0 xdotool key "shift+F5"
 
 Add the following line:
 
-    * * * * * DISPLAY=:0 xdotool key "SHIFT+F5"
+    * * * * * DISPLAY=:0 xdotool key "SHIFT+F5" # reloads the page every minute
 
 Let's check if everything works:
 
