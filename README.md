@@ -52,7 +52,7 @@ Output:
 
     => ruby 2.6.3somenumbersandletters
 
-Step 4
+### Step 4
 
 Time to install Ruby on Rails:
 
