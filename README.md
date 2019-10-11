@@ -70,7 +70,7 @@ Check Rails version:
 
 Don't forget to do:
 
-		rbenv rehash
+	rbenv rehash
 
 every time you install a new gem.
 
