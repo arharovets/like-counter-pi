@@ -2,118 +2,146 @@
 
 Simple web application displaying the like counter on Rapsberry Pi display.
 
-## Installation
+## Installation Guide
 
-First of all, update your Raspbian distribution:
+### Step 1
 
-```bash
-sudo apt update
-```
+Update your Raspbian distribution:
+
+    sudo apt update
 
 Git is already installed on your Raspberry. Let's check it out:
 
-```bash
-git --version
-# Example output:
-# => git version 2.23.0
-```
+    git --version
 
-Step two. Let's clone this repo:
+Example output:
 
-```bash
-git clone git@github.com:arharovets/like-counter-pi.git
-```
+    => git version 2.23.0
 
-Step three. Let's install Ruby:
+### Step 2
 
-```bash
-cd like-counter-pi
-chmod +x install_ruby.sh
-./install_ruby.sh
-# It might take some time (~20 minutes). Pour yourself a big cup of tea.
-# Output should be:
-# => Reload the current shell to get access to rbenv using:
-# => source ~/.bashrc
-```
+Let's clone this repo:
 
-Close current terminal window and open another one. Type the following command:
+    git clone git@github.com:arharovets/like-counter-pi.git
 
-```bash
-source ~/.bashrc
-```
+### Step 3
+
+Let's install Ruby:
+
+    cd like-counter-pi
+    chmod +x install_ruby.sh
+    ./install_ruby.sh
+
+It might take some time (~2 hr on Pi Zero). Pour yourself a big cup of tea ☕️.
+
+The output should look like:
+
+    => Reload the current shell to get access to rbenv using:
+    => source ~/.bashrc
+
+Close current Terminal window and open a new one. Type the following command:
+
+    source ~/.bashrc
 
 Yay! Check the installed version:
 
-```bash
-ruby -v
-=> ruby 2.6.3somenumbersandletters
-```
+    ruby -v
+    => ruby 2.6.3somenumbersandletters
 
-Step four. It is time to install Ruby on Rails.
+Output:
 
-```bash
-gem install bundler
-gem install rails -v 5.2.3
-# Output:
-# =>...
-# => Successfully installed rails-5.2.0
-# => 38 gems installed
+    => ruby 2.6.3somenumbersandletters
 
-rbenv rehash
-rails -v
-# Output:
-# => Rails 5.2.3
-```
+Step 4
 
-Now when we have RoR installed...Step five.
+Time to install Ruby on Rails:
 
-```bash
-cd like-counter-pi
-bundle install
-rails s
-# Open the browser window and type localhost:3000.
-# If everything is okay, Press CTRL-C to stop the server.
-```
+    gem install bundler
+    gem install rails -v 5.2.3
+    # Output:
+    # =>...
+    # => Successfully installed rails-5.2.0
+    # => 38 gems installed
+    
+    rbenv rehash
+    rails -v
+    # Output:
+    # => Rails 5.2.3
+
+Output:
+
+    =>...
+    => Successfully installed rails-5.2.0
+    => 38 gems installed
+    
+    rbenv rehash
+    rails -v
+    # Output:
+    # => Rails 5.2.3
+
+Check Rails version:
+
+    rbenv rehash
+    rails -v
+
+Output:
+
+    => Rails 5.2.3
+
+### Step 5
+
+Now that we have RoR installed...
+
+    cd like-counter-pi
+    bundle install
+    rails s
+
+Open the browser window and type `localhost:3000`. If everything is okay, Press `CTRL+C` to stop the server.
 
 Great! Now we need to get rid of the screensaver:
 
-```bash
-sudo apt-get install xscreensaver
-```
+    sudo apt-get install xscreensaver
 
 ... and then disable the screensaver from Pi's GUI.
 
-Step six. Make sure you set the autologin feature.
-Go to Preferences > Raspberry Pi Configuration, click System tab and set Boot: To Desktop, then check Auto Login: Login as user 'username'.
+### Step 6
 
-Step seven. Now we need to tell our system to run rails server on boot, and we're going to do it with systemd.
+Make sure you set the auto-login feature.
+Go to `Preferences -> Raspberry Pi Configuration`, click "System" tab and set "Boot": `To Desktop`, then check "Auto Login": `Login as user 'username'`.
 
-```bash
-RAILS_ENV=production bundle exec rake assets:precompile
-sudo cp like-counter-pi.service /usr/lib/systemd/system
-systemctl enable like-counter-pi.service
-systemctl start like-counter-pi.service
-```
+### Step 7
 
-Step eight. We need to tell Raspberry what to run on the boot:
+Now we need to tell our system to run Rails server on boot, and we're going to do it with `systemd`.
 
-```bash
-sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
+    RAILS_ENV=production bundle exec rake assets:precompile
+    # wait a bit till precompile is finished
+    sudo cp like-counter-pi.service /usr/lib/systemd/system
+    systemctl enable like-counter-pi.service
+    systemctl start like-counter-pi.service
 
-# Add the following line:
-/usr/bin/chromium --kiosk --ignore-certificate-errors --disable-restore-session-state "http://localhost:3000"
-```
+### Step 8
 
-Step nine. We need to refresh the page every 1 minute.
+We need to tell Raspberry what to run on the boot:
 
-```bash
-sudo apt install xdotool
-crontab -e
-# add the following line:
-* * * * * DISPLAY=:0 xdotool key "shift+F5"
-```
+    sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
+
+Add the following line:
+
+    /usr/bin/chromium --kiosk --disable-restore-session-state http://localhost:3000
+
+### Step 9
+
+We need to refresh the page every 1 minute. Do it via Cron task:
+
+    sudo apt install xdotool
+    crontab -e
+    # add the following line:
+    * * * * * DISPLAY=:0 xdotool key "shift+F5"
+
+Add the following line:
+
+    * * * * * DISPLAY=:0 xdotool key "SHIFT+F5"
 
 Let's check if everything works:
-```bash
-sudo reboot
-```
+
+    sudo reboot
