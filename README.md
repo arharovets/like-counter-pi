@@ -55,83 +55,13 @@ Output:
 
 ### Step 4
 
-Time to install Ruby on Rails:
-
-    gem install bundler
-    gem install rails -v 5.2.3
-
-Output:
-
-    =>...
-    => Successfully installed rails-5.2.0
-    => 38 gems installed
-
-Check Rails version:
-
-    rails -v
-
-Don't forget to do:
-
-	rbenv rehash
-
-every time you install a new gem.
-
-Output:
-
-    => Rails 5.2.3
-
-### Step 5
-
-Now that we have RoR installed...
+Now that we have Ruby installed...
 
     cd like-counter-pi
     bundle install
-    rails s
 
-Open the browser window and type `localhost:3000`. If everything is okay, Press `CTRL+C` to stop the server.
+### Step 5
 
-Great! Now we need to get rid of the screensaver:
+Make sure your Raspberry boots into console mode, and run:
 
-    sudo apt-get install xscreensaver
-
-... and then disable the screensaver from Pi's GUI.
-
-### Step 6
-
-Make sure you set the auto-login feature.
-Go to `Preferences -> Raspberry Pi Configuration`, click "System" tab and set "Boot": `To Desktop`, then check "Auto Login": `Login as user 'username'`.
-
-### Step 7
-
-Now we need to tell our system to run Rails server on boot, and we're going to do it with `systemd`.
-
-    RAILS_ENV=production bundle exec rake assets:precompile
-    # wait a bit till precompile is finished
-    sudo cp like-counter-pi.service /usr/lib/systemd/system
-    systemctl enable like-counter-pi.service
-    systemctl start like-counter-pi.service
-
-### Step 8
-
-We need to tell Raspberry what to run on the boot:
-
-    sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
-
-Add the following line:
-
-    @chromium-browser --kiosk --disable-restore-session-state http://localhost:3000
-
-### Step 9
-
-We need to refresh the page every 1 minute. Do it via Cron task:
-
-    sudo apt install xdotool
-    crontab -e
-
-Add the following line:
-
-    * * * * * DISPLAY=:0 xdotool key "SHIFT+F5" # reloads the page every minute
-
-Let's check if everything works:
-
-    sudo reboot
+`thor like_counter:live`
