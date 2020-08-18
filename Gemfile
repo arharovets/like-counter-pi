@@ -3,7 +3,6 @@
 source 'https://rubygems.org' do
   gem 'curses'
   gem 'faraday'
-  gem 'gemoji'
   gem 'nokogiri'
   gem 'thor'
 
@@ -13,4 +12,4 @@ source 'https://rubygems.org' do
   end
 end
 
-ruby '2.7.1'
+ruby '2.6.3'
