@@ -10,6 +10,6 @@ module PageData
     )
     likes = response.css('a._5sqs').text.chars.map { |letter| letter[/\d+/] }.compact.join
 
-    " f " + likes
+    "f " + likes
   end
 end
