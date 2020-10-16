@@ -7,7 +7,7 @@ module Counter
     thr = Thread.new do
       loop do
         Display.output_data
-        sleep(10)
+        sleep(45)
       end
     end
     thr.join
