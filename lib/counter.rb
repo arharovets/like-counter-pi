@@ -8,6 +8,9 @@ module Counter
       loop do
         Display.output_data
         sleep(45)
+      rescue Faraday::ConnectionFailed, SocketError, Faraday::ClientError
+        sleep(45)
+        retry
       end
     end
     thr.join
