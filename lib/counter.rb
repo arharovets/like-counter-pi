@@ -7,9 +7,8 @@ module Counter
     thr = Thread.new do
       loop do
         Display.output_data
-        sleep(45)
+        sleep(300)
       rescue Faraday::ConnectionFailed, SocketError, Faraday::ClientError
-        sleep(45)
         retry
       end
     end
