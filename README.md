@@ -86,7 +86,7 @@ sudo sh ./install_matrix_display.sh
 
 ... and reboot.
 
-### Step 5
+### Step 6
 
 Make sure your Raspberry boots into console mode, and run:
 
