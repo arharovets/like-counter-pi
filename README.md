@@ -6,6 +6,21 @@ Simple web application displaying the like counter on Rapsberry Pi display.
 
 ## Installation Guide
 
+### Prerequisites
+
+#### Font dependencies
+
+We're using custom fonts, so feel free to skip this if you don't plan on using custom fonts.
+
+```bash
+# for ubuntu/debian
+sudo apt-get install fontconfig fbterm
+```
+
+#### Display dependencies
+
+`sudo apt-get install -y build-essential libconfig++-dev`
+
 ### Step 1
 
 Update your Raspbian distribution:
@@ -59,9 +74,24 @@ Now that we have Ruby installed...
 
     cd like-counter-pi
     bundle install
+    rbenv rehash
+
+### Step 5
+
+```bash
+sudo chmod +x ./install_matrix_display.sh
+sudo chmod +x ./run_terminal_emulator.sh
+sudo sh ./install_matrix_display.sh
+```
+
+... and reboot.
 
 ### Step 5
 
 Make sure your Raspberry boots into console mode, and run:
 
-`thor like_counter:live`
+```bash
+cd like-counter-pi
+sh ./run_terminal_emulator.sh
+thor like_counter:live
+```
