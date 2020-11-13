@@ -1,14 +1,5 @@
 #!/bin/bash
 
-echo -e "Installing dependencies..."
-apt-get install -y build-essential libconfig++-dev
-echo -e "Done."
-
-echo -e "Cloning rpi-fb-matrix repository..."
-cd
-git clone --recursive https://github.com/adafruit/rpi-fb-matrix.git
-echo -e "Done."
-
 echo -e "Editing Makefile..."
 cd rpi-fb-matrix
 sed -i -e 's/export HARDWARE_DESC=adafruit-hat/export HARDWARE_DESC=regular/g' ./Makefile
@@ -31,13 +22,13 @@ echo -e "Done."
 
 echo -e "Editing Raspberry config..."
 cd
-sed -i -e 's/dtparam=audio=on/dtparam=audio=off/g' /boot/config.txt
-printf "crop_origin = (0, 0)" >> /boot/config.txt
+sudo sed -i -e 's/dtparam=audio=on/dtparam=audio=off/g' /boot/config.txt
+sudo printf "crop_origin = (0, 0)" >> /boot/config.txt
 echo -e "Done."
 
 echo -e "Copying service file to systemd..."
 cd like-counter-pi
-cp ./matrix.service ./etc/systemd/system/matrix.service
+sudo cp ./matrix.service ./etc/systemd/system/matrix.service
 echo -e "Done."
 
 echo -e "Enabling matrix service..."
