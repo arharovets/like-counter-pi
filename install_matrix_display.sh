@@ -1,7 +1,8 @@
 #!/bin/bash
 
 echo -e "Editing Makefile..."
-cd rpi-fb-matrix
+
+cd /home/pi/rpi-fb-matrix
 sed -i -e 's/export HARDWARE_DESC=adafruit-hat/export HARDWARE_DESC=regular/g' ./Makefile
 echo -e "Done."
 
@@ -21,14 +22,14 @@ printf "crop_origin = (0, 0)" >> ./matrix.cfg
 echo -e "Done."
 
 echo -e "Editing Raspberry config..."
-cd
+cd /home/pi
 sudo sed -i -e 's/dtparam=audio=on/dtparam=audio=off/g' /boot/config.txt
 sudo printf "crop_origin = (0, 0)" >> /boot/config.txt
 echo -e "Done."
 
 echo -e "Copying service file to systemd..."
-cd like-counter-pi
-sudo cp ./matrix.service ./etc/systemd/system/matrix.service
+cd /home/pi/like-counter-pi
+sudo cp /home/pi/like-counter-pi/matrix.service /etc/systemd/system/matrix.service
 echo -e "Done."
 
 echo -e "Enabling matrix service..."
