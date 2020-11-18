@@ -19,7 +19,7 @@ sudo apt-get install fontconfig fbterm
 
 #### Display dependencies
 
-`sudo apt-get install -y build-essential libconfig++-dev`
+    sudo apt-get install -y build-essential libconfig++-dev
 
 ### Step 1
 
@@ -95,3 +95,9 @@ cd like-counter-pi
 sh ./run_terminal_emulator.sh
 thor like_counter:live
 ```
+
+# IRL Example
+
+![alt text](/img/01.JPG "Tucano Counter")
+
+![alt text](/img/02.JPG "Tucano Counter")
