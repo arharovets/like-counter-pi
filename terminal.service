@@ -1,0 +1,14 @@
+[Unit]
+Description=Run terminal emulator
+After=default.target
+
+[Service]
+ExecStart=/home/pi/like-counter-pi/run_terminal_emulator.sh
+WorkingDirectory=/home/pi
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target
