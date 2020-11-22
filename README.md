@@ -4,6 +4,14 @@
 
 Simple web application displaying the like counter on Rapsberry Pi display.
 
+## Usage
+
+```bash
+cd like-counter-pi
+./run_terminal_emulator.sh
+thor like_counter:live
+```
+
 ## Installation Guide
 
 ### Prerequisites
@@ -85,16 +93,6 @@ sudo sh ./install_matrix_display.sh
 ```
 
 ... and reboot.
-
-### Step 6
-
-Make sure your Raspberry boots into console mode, and run:
-
-```bash
-cd like-counter-pi
-sh ./run_terminal_emulator.sh
-thor like_counter:live
-```
 
 # IRL Example
 
