@@ -2,7 +2,7 @@ pre-commit:
   parallel: true
   commands:
     audit:
-      run: brakeman --no-pager
+      run: brakeman --no-pager --rails6
     rubocop:
       files: git diff --name-only --staged
       glob: "*.rb"
