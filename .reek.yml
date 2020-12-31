@@ -26,10 +26,10 @@ detectors:
     enabled: true
     exclude: []
   InstanceVariableAssumption:
-    enabled: true
+    enabled: false
     exclude: []
   IrresponsibleModule:
-    enabled: true
+    enabled: false
     exclude: []
   LongParameterList:
     enabled: true
@@ -132,6 +132,11 @@ detectors:
 
 # Directories and files below will not be scanned at all
 exclude_paths:
+  - db
+  - config
+  - tmp
+  - public
+  - vendor
   - lib/legacy
   - lib/rake/legacy_tasks
   - lib/smelly.rb

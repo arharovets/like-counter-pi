@@ -4,3 +4,18 @@ require:
   - rubocop-rails
   - rubocop-rspec
 
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'db/**/**'
+    - 'config/**/**'
+    - 'node_modules/**/**'
+    - 'log/**/**'
+    - 'tmp/**/**'
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/**'
