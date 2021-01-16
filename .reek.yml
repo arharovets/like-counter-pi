@@ -23,7 +23,7 @@ detectors:
     max_calls: 1
     allow_calls: []
   FeatureEnvy:
-    enabled: true
+    enabled: false
     exclude: []
   InstanceVariableAssumption:
     enabled: false
@@ -129,6 +129,15 @@ detectors:
     public_methods_only: false
 
 ### Excluding directories
+directories:
+  "app/lib":
+    DuplicateMethodCall:
+      enabled: false
+    UtilityFunction:
+      enabled: false
+  "app/services":
+    MissingSafeMethod:
+      enabled: false
 
 # Directories and files below will not be scanned at all
 exclude_paths:

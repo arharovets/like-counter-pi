@@ -1,0 +1,6 @@
+exclude_paths:
+  - 'vendor/**/*.rb'
+  - 'db/schema.rb'
+
+speedups:
+  fetch_with_argument_vs_block: false

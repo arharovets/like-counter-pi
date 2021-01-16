@@ -10,6 +10,8 @@ pre-commit:
     reek:
       files: git diff --name-only --staged
       glob: "*.rb"
-      run: reek
+      run: reek --force-exclusion {files}
+    fasterer:
+      run: fasterer
     rspec:
       run: rspec
