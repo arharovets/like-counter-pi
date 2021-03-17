@@ -1,9 +1,4 @@
 <template>
-  <!-- <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div> -->
-
   <!-- Check that the SDK client is not currently loading before accessing is methods -->
   <div v-if="!$auth.loading">
     <!-- show login when not authenticated -->
